@@ -10,8 +10,12 @@ export class Game extends Phaser.Game {
 
 window.addEventListener('load', () => {
   const cfg: Phaser.Types.Core.GameConfig = {
-    width: 375,
-    height: 812,
+    width: 1920,
+    height: 1080,
+    scale: {
+      mode: Phaser.Scale.ScaleModes.RESIZE,
+      autoCenter: Phaser.Scale.CENTER_BOTH
+  },
     type: Phaser.AUTO,
     parent: 'game',
     scene: [BootScene, GameScene],
@@ -29,10 +33,24 @@ window.addEventListener('load', () => {
     },
     backgroundColor: '#222',
     render: {
-      pixelArt: true,
+      pixelArt: false,
       antialias: false,
     },
   };
 
   const game = new Game(cfg);
+
+
+  // Callback chamado quando a janela do navegador é redimensionada
+  window.addEventListener('resize', () => {
+    resizeGame();
+  });
+  
+  function resizeGame() {
+    //const canvas = document.querySelector('canvas');
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    // Atualize o tamanho do canvas do jogo
+    game.scale.resize(windowWidth, windowHeight);
+  }
 });
