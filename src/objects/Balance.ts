@@ -1,6 +1,16 @@
 
 export default class Balance{
-    value: number;
+    private value: number;
+    addToValue(amount: number){
+        this.value += amount;
+    }
+    subtractFromValue(amount: number){
+        this.value -= amount;
+    }
+    getValue(){
+        return this.value;
+    }
+    
 
     constructor( value: number){
         this.value = value;
