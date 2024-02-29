@@ -22,6 +22,10 @@ export class GameScene extends Phaser.Scene {
     this.createRectangles(cameraWidth, cameraHeight);
 
     const balanceText = this.add.text( cameraWidth < 600? cameraWidth/4: cameraWidth/1.3, cameraWidth < 600? 50: cameraHeight/4, `Saldo: ${this.balance.getValue()}`, { fontSize: '24px', color: '#ffffff' });
+    const firstFruit = this.reel1.getRandomFruit();
+    const secondFruit = this.reel2.getRandomFruit();
+    const thirdFruit = this.reel3.getRandomFruit();
+    console.log(firstFruit, secondFruit, thirdFruit);
   }
 
   preload(): void {}

@@ -19,6 +19,19 @@ export default class Reel extends Phaser.GameObjects.Container {
         this.rectangle = rectangle;
     }
 
+    getRandomFruit() {
+        const totalWeight = this.fruits.reduce((acc, fruit) => acc + fruit.weight, 0);
+
+        const random = Math.random() * totalWeight;
+        let accumulatedWeight = 0;
+        for (let i = 0; i < this.fruits.length; i++) {
+            accumulatedWeight += this.fruits[i].weight;
+            if (random < accumulatedWeight) {
+                return this.fruits[i];
+            }
+        }
+    }
+
     // startSpin() {
     //     // Lógica para girar os reels
     //         const spinTween = this.tweens.add({
