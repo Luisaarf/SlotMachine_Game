@@ -11,4 +11,4 @@ export default class Reel extends Phaser.GameObjects.Container {
         this.reel.create(x, y - 100, 'banana');
         this.rectangle = rectangle;
     }
-    }
+}
