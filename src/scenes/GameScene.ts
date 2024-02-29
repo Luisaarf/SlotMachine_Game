@@ -13,7 +13,14 @@ export class GameScene extends Phaser.Scene {
   console.log(this.balance.getValue());}
 
   create(): void {
-    console.log(this.cameras.main.width, this.cameras.main.height)
+    this.createRectangles();
+  }
+
+  preload(): void {}
+
+  update(): void {}
+
+  public createRectangles() {
     const slotRect1 = this.add.rectangle(this.cameras.main.width / 4, this.cameras.main.height / 2, this.cameras.main.width * 0.15, 350);
     slotRect1.setStrokeStyle(2, 0xcedce6);
     const reel1 = new Reel(this, slotRect1.x, slotRect1.y, slotRect1);
@@ -25,7 +32,4 @@ export class GameScene extends Phaser.Scene {
     const reel3 = new Reel(this, slotRect3.x, slotRect3.y, slotRect3);
   }
 
-  preload(): void {}
-
-  update(): void {}
 }
