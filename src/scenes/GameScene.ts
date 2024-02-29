@@ -1,11 +1,12 @@
 import Balance from '@objects/Balance';
 import Reel from '@objects/Reel';
-
+import Button from '@objects/Button';
 export class GameScene extends Phaser.Scene {
 
   reel1: Reel;
   reel2: Reel;
   reel3: Reel;
+  button: Button;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -20,17 +21,15 @@ export class GameScene extends Phaser.Scene {
     const cameraWidth= this.cameras.main.width;
     const cameraHeight= this.cameras.main.height;
     this.createRectangles(cameraWidth, cameraHeight);
-
+    console.log(this.reel1);
     const balanceText = this.add.text( cameraWidth < 600? cameraWidth/4: cameraWidth/1.3, cameraWidth < 600? 50: cameraHeight/4, `Saldo: ${this.balance.getValue()}`, { fontSize: '24px', color: '#ffffff' });
-    const firstFruit = this.reel1.getRandomFruit();
-    const secondFruit = this.reel2.getRandomFruit();
-    const thirdFruit = this.reel3.getRandomFruit();
-    console.log(firstFruit, secondFruit, thirdFruit);
+    const button = new Button(this, cameraWidth/1.2, cameraWidth < 600? 50: cameraHeight/1.5, cameraWidth < 600? 'buttonS': 'buttonM', 'Girar', 0.5, this.reel1, this.reel2, this.reel3);
   }
 
   preload(): void {}
 
   update(): void {}
+
 
   // Cria os retângulos que representam os rolos da máquina
   public createRectangles(camWidth: number, camHeight: number) {

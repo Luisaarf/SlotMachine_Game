@@ -6,6 +6,7 @@ interface Fruit {
 
 export default class Fruits {
     fruits: Fruit[];
+
     constructor() {
         this.fruits = [
             {fruit : 'banana', weight : 8, payment: 10},
