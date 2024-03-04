@@ -1,4 +1,4 @@
-interface Fruit {
+export interface Fruit {
     fruit: string;
     weight: number;
     payment: number;
@@ -6,6 +6,7 @@ interface Fruit {
 
 export default class Fruits {
     fruits: Fruit[];
+    selectedFruits : Fruit[] = [];
 
     constructor() {
         this.fruits = [
