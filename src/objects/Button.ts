@@ -4,8 +4,9 @@ import Balance from './Balance';
 
 export default class MyButton extends Phaser.GameObjects.Container {
 
+    balanceText: Phaser.GameObjects.Text;
     fruits = new Fruits;
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, text: string, scale: number, reel1: Reel, reel2: Reel, reel3: Reel, balance: Balance) {
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, text: string, scale: number, reel1: Reel, reel2: Reel, reel3: Reel, balance: Balance, balanceText: Phaser.GameObjects.Text) {
         super(scene, x, y);
         const button = scene.add.image(0, 0, texture).setInteractive();
         this.add(button);
@@ -13,6 +14,7 @@ export default class MyButton extends Phaser.GameObjects.Container {
         this.add(buttonText);
         scene.add.existing(this);
         this.setScale(scale);
+        this.balanceText = balanceText;
         button.on('pointerdown', () => {
             button.setTint(0x666666); 
             this.payFromBalance(balance);
@@ -25,6 +27,7 @@ export default class MyButton extends Phaser.GameObjects.Container {
 
     public payFromBalance(balance: Balance) {
         balance.subtractFromValue(10);
+        this.balanceText.setText(`Saldo: ${balance.getValue()}`);
     }
 
     public spinReels(reel1 : Reel, reel2: Reel, reel3: Reel) {
