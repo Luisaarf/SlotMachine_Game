@@ -32,7 +32,6 @@ export default class Reel extends Phaser.GameObjects.Container {
             this.activeFruits.push(this.reel.create(this.x,this.y + i*100, this.allFruits[i].fruit));
             this.activeFruits.push(this.reel.create(this.x,this.y - i*100, this.allFruits[this.allFruits.length - i].fruit));
         }
-        console.log(this.activeFruits.map((element) => element.texture.key), 'array')
     }
 
     getRandomFruit() {
@@ -50,19 +49,20 @@ export default class Reel extends Phaser.GameObjects.Container {
     }
 
     startSpin(reelNum : number) {
-        console.log(this.activeFruits, 'array')
-        console.log(this.activeFruits.map((element) => element.texture.key), 'array')
+        // for(let i = 0; i < 12; i++){
+        //     this.fasttween()
+        // }
+        // this.fasttween()
+        console.log(this.fruitToWin.fruit);
         this.activeFruits.forEach((element,index) => {
-            console.log(element.y, element.texture.key)
-            //adicionar outro tween para apenas rodar aleatóriamente por um tempo ? 
-            const tween = this.scene.tweens.add({
+            this.scene.tweens.add({
                 targets: element,
                 y: element.y +100 , // Move o objeto para fora da tela na parte inferior
                 duration: 100, // Duração da animação em milissegundos
                 ease: 'Linear', // Tipo de easing
                 onComplete: () => { 
                     this.checkAndSpawnNextFruit(element, index);
-                    if(element.y === 316){ //definir melhor o 316 colocando um colisor
+                    if(element.y === 316){ //definir melhor o 316 colocando um colisor na middleLine
                         if(element.texture.key === this.fruitToWin.fruit) {
                             console.log("just right")
                         }
@@ -71,6 +71,31 @@ export default class Reel extends Phaser.GameObjects.Container {
             });
         });
     } 
+
+    fasttween(){
+        let counter = 0
+        while(counter < 12){
+            this.activeFruits.forEach((element,index) => {
+                this.scene.tweens.add({
+                   targets: element,
+                   y: element.y +100 , // Move o objeto para fora da tela na parte inferior
+                   duration: 100, // Duração da animação em milissegundos
+                   ease: 'Linear', // Tipo de easing
+                   onComplete: () => { 
+                    if (!this.scene.cameras.main.worldView.contains(element.x, element.y)) {
+                        element.destroy();
+                        this.activeFruits.splice(index, 1);
+                        // Adiciona a próxima fruta
+                        const newFruit = this.reel.create(this.x, this.y - 300, this.allFruits[index +1 ].fruit);
+                        this.activeFruits.push(newFruit);
+                    }
+                   },
+               });
+           });
+            counter++
+           
+        }
+    }
 
 
     checkAndSpawnNextFruit(element: Phaser.GameObjects.Sprite, index: number) {

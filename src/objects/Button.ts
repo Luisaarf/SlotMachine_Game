@@ -36,8 +36,8 @@ export default class MyButton extends Phaser.GameObjects.Container {
             const secondFruit = reel2.getRandomFruit();
             const thirdFruit = reel3.getRandomFruit();
             reel1.startSpin(1);
-            reel2.startSpin(2);
-            reel3.startSpin(3);
+            // reel3.startSpin(3);
+            // reel2.startSpin(2);
         } else {
             console.error("Os rolos não foram inicializados corretamente.");
         }
