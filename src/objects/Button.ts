@@ -35,7 +35,7 @@ export default class MyButton extends Phaser.GameObjects.Container {
             const firstFruit = reel1.getRandomFruit();
             const secondFruit = reel2.getRandomFruit();
             const thirdFruit = reel3.getRandomFruit();
-            reel1.startSpin(1);
+            reel1.startSpin();
             // reel3.startSpin(3);
             // reel2.startSpin(2);
         } else {
