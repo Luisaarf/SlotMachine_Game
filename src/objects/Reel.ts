@@ -49,8 +49,7 @@ export default class Reel extends Phaser.GameObjects.Container {
         return this.allFruits[random];
     }
 
-    buildTweens(){
-        console.log(this.allReelFruits, 'teste')
+    buildTweens(isLast: boolean){
             this.scene.tweens.add({
                 targets: this.allReelFruits,
                 y: this.allReelFruits[7].y, // Move o objeto para fora da tela na parte inferior
@@ -67,10 +66,13 @@ export default class Reel extends Phaser.GameObjects.Container {
                     this.allReelFruits[5].y= this.y + 100;
                     this.allReelFruits[6].y= this.y + 200;
                     this.allReelFruits[7].y= this.y + 300;
-                    if(this.allReelFruits[4].texture.key === this.fruitToWin.fruit) {
-                        console.log("just right")
+                    if (isLast) {
+                        this.allReelFruits[4].setTexture(this.randomFruit.fruit);
+                        if(this.allReelFruits[4].texture.key === this.fruitToWin.fruit) {
+                            console.log("just right")
+                        }
                     }
-                }  
+                } 
             });
         }
 
@@ -79,11 +81,10 @@ export default class Reel extends Phaser.GameObjects.Container {
         console.log(this.randomFruit.fruit)
         if(this.allReelFruits.length > 0 ){
             for (let i = 0; i < this.allReelFruits.length; i++) {
-            this.buildTweens()}
+            this.buildTweens(i === this.allReelFruits.length - 1)}
         }else{
             console.error("Os rolos não foram inicializados corretamente.");
         }
-        this.allReelFruits[4].setTexture(this.randomFruit.fruit);
     } 
 
     // fasttween(){
