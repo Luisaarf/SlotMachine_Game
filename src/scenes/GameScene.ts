@@ -24,9 +24,8 @@ export class GameScene extends Phaser.Scene {
     const cameraHeight= this.cameras.main.height;
     this.createRectangles(cameraWidth, cameraHeight);
     const balanceText = this.add.text( cameraWidth < 600? cameraWidth/4: cameraWidth/1.3, cameraWidth < 600? 50: cameraHeight/4, `Saldo: ${this.balance.getValue()}`, { fontSize: '24px', color: '#ffffff' });
-    const button = new Button(this, cameraWidth/1.2, cameraWidth < 600? 50: cameraHeight/1.5, cameraWidth < 600? 'buttonS': 'buttonM', 'Girar', 0.5, this.reel1, this.reel2, this.reel3, this.balance, balanceText);
-    this.middleLine = new MiddleLine(this, cameraWidth/2, cameraHeight/2);
-    this.middleLine.create(cameraWidth, cameraHeight);
+    const middleLine = new MiddleLine(this, cameraWidth/2, cameraHeight/2);
+    const button = new Button(this, cameraWidth/1.2, cameraWidth < 600? 50: cameraHeight/1.5, cameraWidth < 600? 'buttonS': 'buttonM', 'Girar', 0.5, this.reel1, this.reel2, this.reel3, this.balance, balanceText, middleLine);
   }
 
   preload(): void {}

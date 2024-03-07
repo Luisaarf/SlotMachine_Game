@@ -1,6 +1,7 @@
 import Reel from '../objects/Reel';
 import Fruits from './Fruits';
 import Balance from './Balance';
+import MiddleLine from './MiddleLine';
 
 interface ChosenFruitsOrder {
     fruit: string;
@@ -14,8 +15,9 @@ export default class MyButton extends Phaser.GameObjects.Container {
     fruits = new Fruits().getFruits();
     arrayFruits : ChosenFruitsOrder[] = []
     button : Phaser.GameObjects.Image;
+    middleLine: MiddleLine;
 
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, text: string, scale: number, reel1: Reel, reel2: Reel, reel3: Reel, balance: Balance, balanceText: Phaser.GameObjects.Text) {
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, text: string, scale: number, reel1: Reel, reel2: Reel, reel3: Reel, balance: Balance, balanceText: Phaser.GameObjects.Text, middleLine: MiddleLine) {
         super(scene, x, y);
         this.button = scene.add.image(0, 0, texture).setInteractive();
         this.add(this.button);
@@ -33,6 +35,8 @@ export default class MyButton extends Phaser.GameObjects.Container {
             this.spinReels(reel1, reel2, reel3);
             this.button.disableInteractive();
         });
+        middleLine.create();
+        this.middleLine = middleLine;
     }
 
     public payFromBalance() {
@@ -41,12 +45,10 @@ export default class MyButton extends Phaser.GameObjects.Container {
     }
     
     checkWin(){
-        console.log(this.arrayFruits, 'arrayFruits')
         if(this.arrayFruits[0].fruit === this.arrayFruits[1].fruit && this.arrayFruits[1].fruit === this.arrayFruits[2].fruit){
-            console.log('chegou1')
+            this.middleLine.ChangeColor(0x0000ff);
             this.fruits.map(fruit => {
                 if(fruit.fruit === this.arrayFruits[0].fruit){
-                    console.log('chegou2')
                     this.balance.addToValue(fruit.payment);
                     this.balanceText.setText(`Saldo: ${this.balance.getValue()}`);
                 }
@@ -54,8 +56,8 @@ export default class MyButton extends Phaser.GameObjects.Container {
         }
         this.arrayFruits = [];      
         if (this.balance.getValue() >= 10) {
-            this.button.setInteractive();
             this.button.clearTint();
+            this.button.setInteractive();
         }
     }
     public spinReels(reel1 : Reel, reel2: Reel, reel3: Reel) {
