@@ -38,15 +38,15 @@ export class GameScene extends Phaser.Scene {
   public createRectangles(camWidth: number, camHeight: number) {
     const slotRect1 = this.add.rectangle(camWidth < 600? camWidth/3: camWidth/4, camHeight/2, camWidth * 0.15, 350);
     slotRect1.setStrokeStyle(2, 0xcedce6);
-    this.reel1 = new Reel(this, slotRect1.x, slotRect1.y, slotRect1);
+    this.reel1 = new Reel(this, slotRect1.x, slotRect1.y, slotRect1,1);
     this.reel1.createFirstFruits();
     const slotRect2 = this.add.rectangle(slotRect1.x + slotRect1.width, camHeight / 2, camWidth * 0.15, 350);
     slotRect2.setStrokeStyle(2, 0xcedce6);
-    this.reel2 = new Reel(this, slotRect2.x, slotRect2.y, slotRect2);
+    this.reel2 = new Reel(this, slotRect2.x, slotRect2.y, slotRect2,2);
     this.reel2.createFirstFruits();
     const slotRect3 = this.add.rectangle(slotRect2.x + slotRect2.width, camHeight / 2, camWidth * 0.15, 350);
     slotRect3.setStrokeStyle(2, 0xc3dce6);
-    this.reel3 = new Reel(this, slotRect3.x, slotRect3.y, slotRect3);
+    this.reel3 = new Reel(this, slotRect3.x, slotRect3.y, slotRect3,3);
     this.reel3.createFirstFruits();
   }
 }

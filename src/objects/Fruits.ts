@@ -6,7 +6,7 @@ export interface Fruit {
 
 export default class Fruits {
     fruits: Fruit[];
-    selectedFruits : Fruit[] = [];
+    selectedFruits: String[] = [];
 
     constructor() {
         this.fruits = [
@@ -22,5 +22,12 @@ export default class Fruits {
     }
     getFruits() {
         return this.fruits;
+    }
+
+    setSelectFruits(fruit: String) {
+        this.selectedFruits.push(fruit);
+    }
+    getSelectedFruits() {
+        return this.selectedFruits;
     }
 }
