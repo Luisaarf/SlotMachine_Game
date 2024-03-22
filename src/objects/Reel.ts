@@ -21,14 +21,14 @@ export default class Reel extends Phaser.GameObjects.Container {
     }
 
     createFirstFruits(){
-        this.allReelFruits.push(this.reel.create(this.x, this.y - 600, this.allFruits[0].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -500, this.allFruits[1].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -400, this.allFruits[2].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -300, this.allFruits[3].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -200, this.allFruits[4].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -100, this.allFruits[5].fruit));
+        this.allReelFruits.push(this.reel.create(this.x, this.y -840, this.allFruits[0].fruit));
+        this.allReelFruits.push(this.reel.create(this.x, this.y -700, this.allFruits[1].fruit));
+        this.allReelFruits.push(this.reel.create(this.x, this.y -560, this.allFruits[2].fruit));
+        this.allReelFruits.push(this.reel.create(this.x, this.y -420, this.allFruits[3].fruit));
+        this.allReelFruits.push(this.reel.create(this.x, this.y -280, this.allFruits[4].fruit));
+        this.allReelFruits.push(this.reel.create(this.x, this.y -140, this.allFruits[5].fruit));
         this.allReelFruits.push(this.reel.create(this.x, this.y, this.allFruits[6].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y +100, this.allFruits[7].fruit));
+        this.allReelFruits.push(this.reel.create(this.x, this.y +140, this.allFruits[7].fruit));
     }
 
     getRandomFruit() {
@@ -57,14 +57,14 @@ export default class Reel extends Phaser.GameObjects.Container {
                 yoyo: true, 
                 // loop: 5,
                 onComplete: () => { 
-                    this.allReelFruits[0].y= this.y - 600;
-                    this.allReelFruits[1].y= this.y - 500;
-                    this.allReelFruits[2].y= this.y - 400;
-                    this.allReelFruits[3].y= this.y - 300;
-                    this.allReelFruits[4].y= this.y - 200;
-                    this.allReelFruits[5].y= this.y - 100;
+                    this.allReelFruits[0].y= this.y -840;
+                    this.allReelFruits[1].y= this.y -700;
+                    this.allReelFruits[2].y= this.y -560;
+                    this.allReelFruits[3].y= this.y -420;
+                    this.allReelFruits[4].y= this.y -280;
+                    this.allReelFruits[5].y= this.y -140;
                     this.allReelFruits[6].y= this.y ;
-                    this.allReelFruits[7].y= this.y + 100;
+                    this.allReelFruits[7].y= this.y +140;
                     this.allReelFruits.forEach((fruit) => {
                         if(fruit.y === this.y +400){
                             fruit.y = this.y - 400;

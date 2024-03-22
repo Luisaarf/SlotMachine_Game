@@ -9,8 +9,8 @@ import watermelonImg from '@assets/fruits/watermelon.png';
 import barImg from '@assets/fruits/bar.png';
 //UI
 import frame from '@assets/ui/frame.png';
-import background from '@assets/ui/background.png';
-import winLine from '@assets/ui/winLine.png';
+import background from '@assets/ui/bg.png';
+import winLine from '@assets/ui/winline.png';
 //Button
 import button from '@assets/ui/button/play_button_0.png';
 import buttonSelected from '@assets/ui/button/play_button_1.png';
@@ -25,7 +25,7 @@ export class BootScene extends Phaser.Scene {
     this.load.image('frame', frame);
     this.load.image('background', background);
     this.load.image('winLine', winLine);
-    //  - Button
+    //  - Button assets
     this.load.image('button', button);
     this.load.image('buttonSelected', buttonSelected);
     this.load.image('buttonDisabled', buttonDisabled);

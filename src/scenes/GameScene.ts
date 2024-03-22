@@ -3,35 +3,29 @@ import Reel from '@objects/Reel';
 import Button from '@objects/Button';
 import MiddleLine from '@objects/MiddleLine';
 export class GameScene extends Phaser.Scene {
-
+  cameraWidth: number;
+  cameraHeight: number;
+  isMobile: boolean;
   reel1: Reel;
   reel2: Reel;
   reel3: Reel;
   button: Button;
   middleLine: MiddleLine;
+  balance: Balance;
 
   constructor() {
     super({ key: 'GameScene' });
   }
-  
-  balance = new Balance(100);
-
-
-  init(): void {}
 
   create(): void {
-    const cameraWidth= this.cameras.main.width;
-    const cameraHeight= this.cameras.main.height;
-    this.createRectangles(cameraWidth, cameraHeight);
-    const balanceText = this.add.text( cameraWidth < 600? cameraWidth/4: cameraWidth/1.3, cameraWidth < 600? 50: cameraHeight/4, `Saldo: ${this.balance.getValue()}`, { fontSize: '24px', color: '#ffffff' });
-    const middleLine = new MiddleLine(this, cameraWidth/2, cameraHeight/2);
-    const button = new Button(this, cameraWidth/1.2, cameraWidth < 600? 50: cameraHeight/1.5, cameraWidth < 600? 'buttonS': 'buttonM', 'Girar', 0.5, this.reel1, this.reel2, this.reel3, this.balance, balanceText, middleLine);
+    this.cameraWidth = this.cameras.main.width;
+    this.cameraHeight = this.cameras.main.height;
+    this.isMobile = window.innerWidth < 768;
+    this.balance = new Balance(this, this.cameraWidth, this.cameraHeight, this.isMobile, 100);
+    this.createRectangles(this.cameraWidth, this.cameraHeight);
+    const middleLine = new MiddleLine(this, this.cameraWidth/2, this.cameraHeight/2);
+    const button = new Button(this, this.cameraWidth/1.2, this.cameraWidth < 600? 50: this.cameraHeight/1.5, this.cameraWidth < 600? 'buttonS': 'buttonM', 'Girar', 0.5, this.reel1, this.reel2, this.reel3, this.balance, middleLine);
   }
-
-  preload(): void {}
-
-  update(): void {}
-
 
   // Cria os retângulos que representam os rolos da máquina
   public createRectangles(camWidth: number, camHeight: number) {
