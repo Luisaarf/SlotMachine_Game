@@ -1,8 +1,7 @@
 import Fruits, {Fruit}  from './Fruits';
 import Button from './Button'
 export default class Reel extends Phaser.GameObjects.Container {
-    private reel: Phaser.GameObjects.Group;
-    private rectangle: Phaser.GameObjects.Rectangle;
+    private reelGroup: Phaser.GameObjects.Group;
     allReelFruits: Phaser.GameObjects.Sprite[] = []; // frutas que estarão na tela
     fruitsObj = new Fruits;
     allFruits = new Fruits().getFruits();
@@ -13,22 +12,21 @@ export default class Reel extends Phaser.GameObjects.Container {
     // tweensArray: Phaser.Tweens.Tween[] = [];
 
 
-    constructor(scene: Phaser.Scene, x: number, y: number, rectangle : Phaser.GameObjects.Rectangle, reelNumber: number) {
+    constructor(scene: Phaser.Scene, x: number, y: number, reelNumber: number) {
         super(scene, x, y);
-        this.reel = this.scene.add.group(); 
-        this.rectangle = rectangle;
+        this.reelGroup = this.scene.add.group(); 
         this.reelNumber = reelNumber;
     }
 
     createFirstFruits(){
-        this.allReelFruits.push(this.reel.create(this.x, this.y -840, this.allFruits[0].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -700, this.allFruits[1].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -560, this.allFruits[2].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -420, this.allFruits[3].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -280, this.allFruits[4].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y -140, this.allFruits[5].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y, this.allFruits[6].fruit));
-        this.allReelFruits.push(this.reel.create(this.x, this.y +140, this.allFruits[7].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y -840, this.allFruits[0].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y -700, this.allFruits[1].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y -560, this.allFruits[2].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y -420, this.allFruits[3].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y -280, this.allFruits[4].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y -140, this.allFruits[5].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y, this.allFruits[6].fruit));
+        this.allReelFruits.push(this.reelGroup.create(this.x, this.y +140, this.allFruits[7].fruit));
     }
 
     getRandomFruit() {
