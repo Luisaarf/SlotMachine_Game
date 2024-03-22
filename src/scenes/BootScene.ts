@@ -1,3 +1,4 @@
+//Fruits
 import bananaImg from '@assets/fruits/banana.png';
 import appleImg from '@assets/fruits/apple.png';
 import cherryImg from '@assets/fruits/cherry.png';
@@ -6,16 +7,29 @@ import lemonImg from '@assets/fruits/lemon.png';
 import grapeImg from '@assets/fruits/grape.png';
 import watermelonImg from '@assets/fruits/watermelon.png';
 import barImg from '@assets/fruits/bar.png';
-import yellowButtonM from '@assets/ui/CGB02-yellow_M_btn.png';
-import yellowButtonS from '@assets/ui/CGB02-yellow_S_btn.png';
+//UI
+import frame from '@assets/ui/frame.png';
+import background from '@assets/ui/background.png';
+import winLine from '@assets/ui/winLine.png';
+//Button
+import button from '@assets/ui/button/play_button_0.png';
+import buttonSelected from '@assets/ui/button/play_button_1.png';
+import buttonDisabled from '@assets/ui/button/play_button_3.png';
 export class BootScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BootScene' });
   }
 
   preload(): void {
-    this.load.image('buttonM', yellowButtonM);
-    this.load.image('buttonS', yellowButtonS);
+    // UI
+    this.load.image('frame', frame);
+    this.load.image('background', background);
+    this.load.image('winLine', winLine);
+    //  - Button
+    this.load.image('button', button);
+    this.load.image('buttonSelected', buttonSelected);
+    this.load.image('buttonDisabled', buttonDisabled);
+    // Fruits
     this.load.image('banana', bananaImg);
     this.load.image('apple', appleImg);
     this.load.image('cherry', cherryImg);
