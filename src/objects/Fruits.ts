@@ -17,7 +17,7 @@ export default class Fruits {
             {fruit : 'lemon', weight : 6, payment: 25},
             {fruit : 'grape', weight : 8, payment: 10},
             {fruit : 'watermelon', weight : 6, payment: 20},
-            {fruit : 'slot', weight : 1, payment: 100}
+            {fruit : 'bar', weight : 1, payment: 100}
         ];
     }
     getFruits() {
