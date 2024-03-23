@@ -33,6 +33,8 @@ export class GameScene extends Phaser.Scene {
   }
 
   public onPointerUp() {
+    console.log('Pointer Up');
+    console.log(this)
     this.spinReels();
   }
 
@@ -55,8 +57,9 @@ export class GameScene extends Phaser.Scene {
 
   public spinReels() {
         this.reel1.getRandomFruit();
-        this.reel2.getRandomFruit();
-        this.reel3.getRandomFruit();
+        this.reel1.startSpin();
+        // this.reel2.getRandomFruit();
+        // this.reel3.getRandomFruit();
         // this.arrayFruits.push(reel1.startSpin());
         // this.arrayFruits.push(reel2.startSpin());
         // this.arrayFruits.push(reel3.startSpin());

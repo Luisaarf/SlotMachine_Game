@@ -42,36 +42,31 @@ export default class Reel extends Phaser.GameObjects.Container {
             if (random < accumulatedWeight) {
                 this.chosenFruit = this.allFruits[i];
                 this.fruitsObj.setSelectFruits(this.chosenFruit.fruit);
+                console.log(this.chosenFruit.fruit);
                 return this.allFruits[i];
             }
         }
     }
 
+    rearrangeArray( arr : Phaser.GameObjects.GameObject[]){
+        const lastElement = arr.pop(); // Remove o último elemento
+        arr.unshift(lastElement); // Adiciona o último elemento na primeira posição
+    }
+
     buildTweens(isLast: boolean){
             this.scene.tweens.add({
                 targets: this.reelGroup.getChildren(),
-                y: '+=500', // Move o objeto para fora da tela na parte inferior
+                y: '+=560', // Move o objeto para fora da tela na parte inferior
                 duration: 400, // Duração da animação em milissegundos
                 ease: 'cubic.inout', // Tipo de easing
-                delay: 20,
+                // delay: 20,
                 repeat: 2 + this.reelNumber,
-                // yoyo: true, 
-                // loop: 5,
+                onRepeat: () => {
+                    this.rearrangeArray(this.reelGroup.getChildren());
+                    this.entries = this.reelGroup.children.entries as Phaser.GameObjects.Sprite[];
+                },
                 onComplete: () => { 
                     console.log(this.reelGroup.children.entries, 'aff');
-                    this.entries[0].y= this.y -840;
-                    this.entries[1].y= this.y -700;
-                    this.entries[2].y= this.y -560;
-                    this.entries[3].y= this.y -420;
-                    this.entries[4].y= this.y -280;
-                    this.entries[5].y= this.y -140;
-                    this.entries[6].y= this.y ;
-                    this.entries[7].y= this.y +140;
-                    this.entries.forEach((fruit) => {
-                        if(fruit.y === this.y +400){
-                            fruit.y = this.y - 400;
-                        }; // Mover para cima
-                    });
                     if (isLast) {
                         this.entries[6].setTexture(this.chosenFruit.fruit);
                     }
@@ -80,6 +75,7 @@ export default class Reel extends Phaser.GameObjects.Container {
     }
 
     startSpin() {  
+        console.log('aqui')
         if(this.reelGroup.children.entries.length > 0 ){
             for (let i = 0; i < this.reelGroup.children.entries.length; i++) {
                 this.buildTweens(i === this.reelGroup.children.entries.length - 1)
