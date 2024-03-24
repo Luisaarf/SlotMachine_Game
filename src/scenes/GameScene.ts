@@ -41,7 +41,7 @@ export class GameScene extends Phaser.Scene {
 
   // Cria os retângulos que representam os rolos da máquina
   public createReels() {
-    let arrayFruitsNames: String[] = this.slotMath.getFruitsNamesArray();
+    let arrayFruitsNames: string[] = this.slotMath.getFruitsNamesArray();
     const frameSlot = this.add.image(this.cameraWidth/2.46, this.cameraHeight/2, 'frame').setDepth(1);
     frameSlot.setScale(1.5);
     const winLine = this.add.image(this.cameraWidth/2.5, this.cameraHeight/2, 'winLine').setDepth(1);

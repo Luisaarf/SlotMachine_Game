@@ -4,10 +4,10 @@ export default class Reel extends Phaser.GameObjects.Container {
     entries : Phaser.GameObjects.Sprite[];
     chosenFruit : string;
     reelNumber: number;
-    arrayFruitsNames: String[];
+    arrayFruitsNames: string[];
 
 
-    constructor(scene: Phaser.Scene, x: number, y: number, reelNumber: number, arrayFruitsNames: String[]) {
+    constructor(scene: Phaser.Scene, x: number, y: number, reelNumber: number, arrayFruitsNames:string[]) {
         super(scene, x, y);
         this.reelGroup = this.scene.add.group(); 
         this.reelNumber = reelNumber;
