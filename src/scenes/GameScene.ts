@@ -12,6 +12,7 @@ export class GameScene extends Phaser.Scene {
   button: Button;
   middleLine: MiddleLine;
   balance: Balance;
+  arraySortedFruits: string[] = [];
 
   constructor() {
     super({ key: 'GameScene' });
@@ -54,21 +55,39 @@ export class GameScene extends Phaser.Scene {
     // this.reel3.createFirstFruits();
   }
 
+  checkWin(){         
+    if(this.arraySortedFruits[0] === this.arraySortedFruits[1] && this.arraySortedFruits[1] === this.arraySortedFruits[2]){
+        // this.middleLine.ChangeColor(0x0000ff);
+        // this.fruits.map(fruit => {
+        //     if(fruit.fruit === this.arrayFruits[0].fruit){
+        //         this.balance.addToValue(fruit.payment);
+        //         this.balanceText.setText(`Saldo: ${this.balance.getValue()}`);
+        //     }
+        // });
+        console.log('Você ganhou!')
+    }
+    console.log('Você perdeu!')
+    this.arraySortedFruits = [];      
+    if (this.balance.getValue() >= 10) {
+        //voltar sprite verde do botão 
+        this.button.setInteractive();
+    }
+}
+
 
   public spinReels() {
         this.reel1.getRandomFruit();
-        this.reel1.startSpin();
         // this.reel2.getRandomFruit();
         // this.reel3.getRandomFruit();
-        // this.arrayFruits.push(reel1.startSpin());
-        // this.arrayFruits.push(reel2.startSpin());
-        // this.arrayFruits.push(reel3.startSpin());
-        // this.scene.time.addEvent({
-        //     delay: 5500,
-        //     callback: ()=>{
-        //         this.checkWin();
-        //     },
-        // })
+        this.arraySortedFruits.push(this.reel1.startSpin());
+        // this.arraySortedFruits.push(this.reel2.startSpin());
+        // this.arraySortedFruits.push(this.reel3.startSpin());
+        this.time.addEvent({ // Fix: Access the 'time' property through 'scene.sys' instead of 'this.scene'
+          delay: 5500,
+          callback: ()=>{
+            this.checkWin();
+          },
+        })
     
     
 }
