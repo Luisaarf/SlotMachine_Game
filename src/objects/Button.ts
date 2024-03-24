@@ -1,17 +1,5 @@
-import Reel from '../objects/Reel';
-import Fruits from './Fruits';
-import Balance from './Balance';
-import MiddleLine from './MiddleLine';
-
-interface ChosenFruitsOrder {
-    fruit: string;
-    reel: number;
-}
-
 export default class MyButton extends Phaser.GameObjects.Container {
 
-    fruits = new Fruits().getFruits();
-    arrayFruits : ChosenFruitsOrder[] = []
     buttonImage : Phaser.GameObjects.Image;
     clickCallback : Function;
 
@@ -26,35 +14,15 @@ export default class MyButton extends Phaser.GameObjects.Container {
         this.setInteractive();
         this.on('pointerdown', () => {
             pointerDownCallback();
+            this.buttonImage.setTexture('buttonSelected');
         });
           this.on('pointerup', () => {
             pointUpCallback();
             // this.spinReels();
             this.disableInteractive();
+            this.buttonImage.setTexture('buttonDisabled');
         });
     }
-
-    // setClickCallback(callback: Function) {
-    //     this.clickCallback = callback;
-    // }
-    
-    checkWin(){         ////////////////// colocar essa função em outra classe 
-        // if(this.arrayFruits[0].fruit === this.arrayFruits[1].fruit && this.arrayFruits[1].fruit === this.arrayFruits[2].fruit){
-        //     this.middleLine.ChangeColor(0x0000ff);
-        //     this.fruits.map(fruit => {
-        //         if(fruit.fruit === this.arrayFruits[0].fruit){
-        //             this.balance.addToValue(fruit.payment);
-        //             this.balanceText.setText(`Saldo: ${this.balance.getValue()}`);
-        //         }
-        //     });
-        // }
-        // this.arrayFruits = [];      
-        // if (this.balance.getValue() >= 10) {
-        //     this.button.clearTint();
-        //     this.button.setInteractive();
-        // }
-    }
-
 
 
 }
