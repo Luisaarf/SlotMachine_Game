@@ -2,6 +2,7 @@ import Balance from '@objects/Balance';
 import Reel from '@objects/Reel';
 import Button from '@objects/Button';
 import MiddleLine from '@objects/MiddleLine';
+import SlotMath from '@objects/SlotMath';
 export class GameScene extends Phaser.Scene {
   cameraWidth: number;
   cameraHeight: number;
@@ -12,6 +13,7 @@ export class GameScene extends Phaser.Scene {
   button: Button;
   middleLine: MiddleLine;
   balance: Balance;
+  slotMath : SlotMath;
   arraySortedFruits: string[] = [];
 
   constructor() {
@@ -34,20 +36,19 @@ export class GameScene extends Phaser.Scene {
   }
 
   public onPointerUp() {
-    console.log('Pointer Up');
-    console.log(this)
     this.spinReels();
   }
 
   // Cria os retângulos que representam os rolos da máquina
   public createReels() {
+    let arrayFruitsNames: String[] = this.slotMath.getFruitsNamesArray();
     const frameSlot = this.add.image(this.cameraWidth/2.46, this.cameraHeight/2, 'frame').setDepth(1);
     frameSlot.setScale(1.5);
     const winLine = this.add.image(this.cameraWidth/2.5, this.cameraHeight/2, 'winLine').setDepth(1);
     winLine.setScale(1.8);
     const slotRectx =  this.isMobile? this.cameraWidth/3 : this.cameraWidth/4;
     const slotRecty =  this.cameraHeight/2;
-    this.reel1 = new Reel(this, slotRectx, slotRecty,1);
+    this.reel1 = new Reel(this, slotRectx, slotRecty,1, arrayFruitsNames);
     this.reel1.createFirstFruits();
     // this.reel2 = new Reel(this,slotRectx + 200 , slotRecty,2);
     // this.reel2.createFirstFruits();
@@ -69,16 +70,16 @@ export class GameScene extends Phaser.Scene {
     console.log('Você perdeu!')
     this.arraySortedFruits = [];      
     if (this.balance.getValue() >= 10) {
-        //voltar sprite verde do botão 
+        this.button.setButtonTexture('button');
         this.button.setInteractive();
     }
 }
 
 
   public spinReels() {
-        this.reel1.getRandomFruit();
-        // this.reel2.getRandomFruit();
-        // this.reel3.getRandomFruit();
+        this.slotMath.getRandomFruitByWeight();
+        this.slotMath.getRandomFruitByWeight();
+        this.slotMath.getRandomFruitByWeight();
         this.arraySortedFruits.push(this.reel1.startSpin());
         // this.arraySortedFruits.push(this.reel2.startSpin());
         // this.arraySortedFruits.push(this.reel3.startSpin());

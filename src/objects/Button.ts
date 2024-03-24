@@ -24,5 +24,9 @@ export default class MyButton extends Phaser.GameObjects.Container {
         });
     }
 
+    public setButtonTexture(text: string) {
+        this.buttonImage.setTexture(text);
+    }
+
 
 }
