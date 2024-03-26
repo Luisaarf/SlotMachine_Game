@@ -22,15 +22,8 @@ export class GameScene extends Phaser.Scene {
 
   preload() {
     let backgroundImage = this.add.image(0, 0, 'background').setOrigin(0).setDepth(-1);
-    // Calculate scale to fit the image to the game's width
-      // const scaleX = Number(this.sys.game.config.width) / backgroundImage.width;
-      // const scaleY = Number(this.sys.game.config.height) / backgroundImage.height;
-      
-      // // Apply the scale, maintaining aspect ratio
-      // backgroundImage.setScale(Math.max(scaleX, scaleY));
-      console.log(this.cameras.main.height, 'this.cameras.main.height')
-      console.log(this.cameras.main.width, 'this.cameras.main.width')
-      backgroundImage.setScale(1.6, 1.15);
+      backgroundImage.displayWidth = this.sys.canvas.width;
+      backgroundImage.displayHeight = this.sys.canvas.height;
   }
 
   create(): void {
@@ -61,14 +54,14 @@ export class GameScene extends Phaser.Scene {
     frameSlot.setScale(1.5);
     const winLine = this.add.image(this.cameraWidth/2.5, this.cameraHeight/2, 'winLine').setDepth(1);
     winLine.setScale(1.8);
-    const slotRectx =  this.isMobile? this.cameraWidth/3 : this.cameraWidth/4;
+    let slotRectx =  frameSlot.x;
     const slotRecty =  this.cameraHeight/2;
-    this.reel1 = new Reel(this, slotRectx, slotRecty,1, arrayFruitsNames);
+    this.reel1 = new Reel(this, slotRectx - 200, slotRecty,1, arrayFruitsNames);
     this.reel1.createFirstFruits();
-    // this.reel2 = new Reel(this,slotRectx + 200 , slotRecty,2);
-    // this.reel2.createFirstFruits();
-    // this.reel3 = new Reel(this, slotRectx + 400, slotRecty,3);
-    // this.reel3.createFirstFruits();
+    this.reel2 = new Reel(this,slotRectx , slotRecty,2, arrayFruitsNames);
+    this.reel2.createFirstFruits();
+    this.reel3 = new Reel(this, slotRectx + 200, slotRecty,3, arrayFruitsNames);
+    this.reel3.createFirstFruits();
   }
 
   checkWin(){         
@@ -81,8 +74,10 @@ export class GameScene extends Phaser.Scene {
         //     }
         // });
         console.log('Você ganhou!')
-    }
-    console.log('Você perdeu!')
+      }else{
+
+        console.log('Você perdeu!')
+      }
     this.arraySortedFruits = [];      
     if (this.balance.getValue() >= 10) {
         this.button.setButtonTexture('button');
@@ -92,15 +87,14 @@ export class GameScene extends Phaser.Scene {
 
 
   public spinReels() {
+    let arrayofReels = [this.reel1, this.reel2, this.reel3];
     for (let i = 0; i < 3; i++) {
         this.slotMath.getRandomFruitByWeight();
+        arrayofReels[i].setChosenFruit(this.slotMath.chosenFruit.fruit);
     }
-    // this.reel1.setChosenFruit(this.slotMath.chosenFruit.fruit);
-    // this.reel2.setChosenFruit(this.slotMath.chosenFruit.fruit);
-    // this.reel3.setChosenFruit(this.slotMath.chosenFruit.fruit);
     this.arraySortedFruits.push(this.reel1.startSpin());
-    // this.arraySortedFruits.push(this.reel2.startSpin());
-    // this.arraySortedFruits.push(this.reel3.startSpin());
+     this.arraySortedFruits.push(this.reel2.startSpin());
+     this.arraySortedFruits.push(this.reel3.startSpin());
     this.time.addEvent({ // Fix: Access the 'time' property through 'scene.sys' instead of 'this.scene'
       delay: 5500,
       callback: ()=>{
