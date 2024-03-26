@@ -28,57 +28,47 @@ export default class Reel extends Phaser.GameObjects.Container {
         this.reelGroup.create(this.x, this.y, this.arrayFruitsNames[6]);
         this.reelGroup.create(this.x, this.y +140, this.arrayFruitsNames[7]);[]
 
-        console.log(this.reelGroup.children.entries);
         this.entries = this.reelGroup.children.entries as Phaser.GameObjects.Sprite[];;
     }
 
-    // rearrangeArray( arr : Phaser.GameObjects.GameObject[], fruitIndexes: number[]){
-    //     const lastElement = fruitIndexes.pop(); 
-    //     fruitIndexes.unshift(lastElement); 
-    //     arr.forEach((fruit : Phaser.GameObjects.Sprite, index) => {
-    //         fruit.setTexture(this.arrayFruitsNames[fruitIndexes[index]]);
-    //     })
-
-    // }
 
     buildTweens(){
-        let indexArragement : number[] = [0, 1, 2, 3, 4, 5, 6, 7]
-        const randomNumInRange: number = Math.random() * 5; // Contador de repetições
+        console.log(this.chosenFruit)
+        const randomNumInRange: number = Math.random() * 3;
+        let numRound =Math.floor(this.reelNumber * 2 + randomNumInRange);
+        for (let i = 0; i < 8; i++)
+        {
+            const ball = this.entries[i];
+            const nextTextureIndex = (i === 7) ? 0 : (i + 1);
+
             this.scene.tweens.add({
-                targets: this.reelGroup.getChildren(),
-                y: '+=560', // Move o objeto para fora da tela na parte inferior
-                duration: 900, // Duração da animação em milissegundos
-                ease: 'cubic.inout', // Tipo de easing
-                // delay: 20,
-                repeat: 2 + this.reelNumber + randomNumInRange,
-                onRepeat: () => {
-                    const lastElement = indexArragement.pop(); 
-                    indexArragement.unshift(lastElement); 
-                    this.reelGroup.getChildren().forEach((fruit : Phaser.GameObjects.Sprite, index) => {
-                        let fruitText : string = this.arrayFruitsNames[indexArragement[index]];
-                        if(index === 0){
-                            console.log(fruitText, 'fruitText')
-                            fruit.setTexture('banana');
-                        }
-                        if (fruitText === 'bar') {
-                            fruit.setTexture(fruitText);
-                        }
-                    })
-                    
+                targets: ball,
+                y: '+=700',
+                duration: 500,
+                // ease: 'Quad.easeInOut',
+                ease: 'cubic.inout',
+                loop: numRound,
+                countdown: numRound,
+                onLoop: (tween) => {
+                    ball.setTexture(this.arrayFruitsNames[nextTextureIndex]) 
+                    console.log(tween.loopCounter)
+                    if(tween.loopCounter === 0  && i === 1){
+                        ball.setTexture(this.chosenFruit)
+                    }
                 },
-                onComplete: () => { 
-                    // console.log(this.reelNumber, randomNumInRange)
-                    // console.log(this.chosenFruit.fruit, 'chosenFruit')
-                    // console.log(this.entries[6].texture.key, 'fruitindex6')
-                    // if(this.chosenFruit !=== this.entries[6].texture.key){
-                    //     roda dnv? 
-                    // }
-                    //pega o array e coloca tudo como initial position 
-                    this.reelGroup.getChildren().forEach((fruit: Phaser.GameObjects.Sprite, index: number) => {
-                        fruit.y = this.y - 840 + (140 * index);
-                    })
-                } 
+                // onRepeat: (tween) => { 
+                //     ball.setTexture(this.arrayFruitsNames[nextTextureIndex]) 
+                //     if(tween.completeAfterLoop && i === 1){
+                //         ball.setTexture(this.chosenFruit)
+                //     }
+                //     tween.completeDelay = 400;
+                // },
+                onComplete: () => {
+                }
             });
+            ball.y = this.y - 840 + (140 * i);
+        }
+        
     }
 
     startSpin() {  
