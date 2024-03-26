@@ -52,24 +52,27 @@ export default class Reel extends Phaser.GameObjects.Container {
                 // delay: 20,
                 repeat: 2 + this.reelNumber + randomNumInRange,
                 onRepeat: () => {
-                    // this.rearrangeArray(this.reelGroup.getChildren(), indexArragement);
-                    console.log(indexArragement, 'indexArragement')
-                    console.log(this.reelGroup.getChildren(), 'reelGroup')
-                    console.log(this.arrayFruitsNames, 'arrayFruitsNames')
                     const lastElement = indexArragement.pop(); 
                     indexArragement.unshift(lastElement); 
                     this.reelGroup.getChildren().forEach((fruit : Phaser.GameObjects.Sprite, index) => {
-                        console.log(this.arrayFruitsNames[indexArragement[index]],'i')
-                        console.log(fruit, 'fruit')
-                        fruit.setTexture(this.arrayFruitsNames[indexArragement[index]]);
+                        let fruitText : string = this.arrayFruitsNames[indexArragement[index]];
+                        if(index === 0){
+                            console.log(fruitText, 'fruitText')
+                            fruit.setTexture('banana');
+                        }
+                        if (fruitText === 'bar') {
+                            fruit.setTexture(fruitText);
+                        }
                     })
+                    
                 },
                 onComplete: () => { 
-                    console.log(this.reelNumber, randomNumInRange)
+                    // console.log(this.reelNumber, randomNumInRange)
                     // console.log(this.chosenFruit.fruit, 'chosenFruit')
                     // console.log(this.entries[6].texture.key, 'fruitindex6')
-                    if(this.chosenFruit === this.entries[6].texture.key){
-                    }
+                    // if(this.chosenFruit !=== this.entries[6].texture.key){
+                    //     roda dnv? 
+                    // }
                     //pega o array e coloca tudo como initial position 
                     this.reelGroup.getChildren().forEach((fruit: Phaser.GameObjects.Sprite, index: number) => {
                         fruit.y = this.y - 840 + (140 * index);
