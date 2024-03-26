@@ -40,7 +40,6 @@ export default class SlotMath {
             if (random < accumulatedWeight) {
                 this.chosenFruit = this.fruitsData[i];
                 this.setSelectFruits(this.chosenFruit.fruit);
-                console.log(this.chosenFruit.fruit);
                 return this.fruitsData[i];
             }
         }

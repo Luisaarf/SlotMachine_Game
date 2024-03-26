@@ -1,7 +1,6 @@
 export default class MyButton extends Phaser.GameObjects.Container {
 
     buttonImage : Phaser.GameObjects.Image;
-    clickCallback : Function;
 
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string, text: string, pointerDownCallback: Function, pointUpCallback: Function) {
         super(scene, x, y);
@@ -18,7 +17,6 @@ export default class MyButton extends Phaser.GameObjects.Container {
         });
           this.on('pointerup', () => {
             pointUpCallback();
-            // this.spinReels();
             this.disableInteractive();
             this.buttonImage.setTexture('buttonDisabled');
         });
