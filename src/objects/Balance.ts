@@ -7,7 +7,7 @@ export default class Balance{
     constructor( scene: Phaser.Scene, camWidth:number, camHeight : number, isMobile:boolean, value: number){
         this.value = value;
         camWidth = isMobile? camWidth/4 : camWidth/1.3;
-        camHeight = isMobile? 50: camHeight/4 ;
+        camHeight = isMobile? 50: camHeight/2 ;
         this.text = scene.add.text( camWidth, camHeight, `Saldo: ${this.getValue()}`, { fontSize: '24px', color: '#ffffff' });
     }
     

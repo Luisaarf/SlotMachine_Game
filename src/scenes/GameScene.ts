@@ -20,9 +20,23 @@ export class GameScene extends Phaser.Scene {
     super({ key: 'GameScene' });
   }
 
+  preload() {
+    let backgroundImage = this.add.image(0, 0, 'background').setOrigin(0).setDepth(-1);
+    // Calculate scale to fit the image to the game's width
+      // const scaleX = Number(this.sys.game.config.width) / backgroundImage.width;
+      // const scaleY = Number(this.sys.game.config.height) / backgroundImage.height;
+      
+      // // Apply the scale, maintaining aspect ratio
+      // backgroundImage.setScale(Math.max(scaleX, scaleY));
+      console.log(this.cameras.main.height, 'this.cameras.main.height')
+      console.log(this.cameras.main.width, 'this.cameras.main.width')
+      backgroundImage.setScale(1.6, 1.15);
+  }
+
   create(): void {
     this.cameraWidth = this.cameras.main.width;
     this.cameraHeight = this.cameras.main.height;
+    this.slotMath = new SlotMath();
     this.isMobile = window.innerWidth < 768;
     this.balance = new Balance(this, this.cameraWidth, this.cameraHeight, this.isMobile, 100);
     this.createReels();
@@ -42,6 +56,7 @@ export class GameScene extends Phaser.Scene {
   // Cria os retângulos que representam os rolos da máquina
   public createReels() {
     let arrayFruitsNames: string[] = this.slotMath.getFruitsNamesArray();
+    // const frameSlot = this.add.image(this.cameraWidth/2.46, this.cameraHeight/2, 'frame').setDepth(1);
     const frameSlot = this.add.image(this.cameraWidth/2.46, this.cameraHeight/2, 'frame').setDepth(1);
     frameSlot.setScale(1.5);
     const winLine = this.add.image(this.cameraWidth/2.5, this.cameraHeight/2, 'winLine').setDepth(1);
@@ -77,19 +92,21 @@ export class GameScene extends Phaser.Scene {
 
 
   public spinReels() {
+    for (let i = 0; i < 3; i++) {
         this.slotMath.getRandomFruitByWeight();
-        this.slotMath.getRandomFruitByWeight();
-        this.slotMath.getRandomFruitByWeight();
-        this.arraySortedFruits.push(this.reel1.startSpin());
-        // this.arraySortedFruits.push(this.reel2.startSpin());
-        // this.arraySortedFruits.push(this.reel3.startSpin());
-        this.time.addEvent({ // Fix: Access the 'time' property through 'scene.sys' instead of 'this.scene'
-          delay: 5500,
-          callback: ()=>{
-            this.checkWin();
-          },
-        })
+    }
+    // this.reel1.setChosenFruit(this.slotMath.chosenFruit.fruit);
+    // this.reel2.setChosenFruit(this.slotMath.chosenFruit.fruit);
+    // this.reel3.setChosenFruit(this.slotMath.chosenFruit.fruit);
+    this.arraySortedFruits.push(this.reel1.startSpin());
+    // this.arraySortedFruits.push(this.reel2.startSpin());
+    // this.arraySortedFruits.push(this.reel3.startSpin());
+    this.time.addEvent({ // Fix: Access the 'time' property through 'scene.sys' instead of 'this.scene'
+      delay: 5500,
+      callback: ()=>{
+        this.checkWin();
+      },
+    })
     
-    
-}
+  }
 }
