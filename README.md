@@ -58,6 +58,10 @@ npm run dev
 checkCondition method ------- deleted
 
 ### Button
+| Members          | Type   | Purpose                     |
+|------------------|--------|-----------------------------|
+| buttonImage      | Image  | Reference to button's image |
+| setButtonTexture | method | Changes button's texture    |
 
 ### SlotMath
 | Members                | Type          | Purpose                                 |
