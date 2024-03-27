@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 ## Game Image
-![Image of Game](https://github.com/Luisaarf/SlotMachine_Game/blob/main/assets/screengame.png))
+![Image of Game](https://github.com/Luisaarf/SlotMachine_Game/blob/main/assets/screengame.png)
 
 ## Entity Relationship Diagram
 ![ER Diagram](https://github.com/Luisaarf/SlotMachine_Game/blob/main/assets/diagram.png))
