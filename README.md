@@ -55,8 +55,6 @@ npm run dev
 | buildTweens       | method         | It starts the animation, changing texture each loop and calling to check win when it finishes    |
 | startSpin         | method         | It calls the method to run animation                                                             |
 
-checkCondition method ------- deleted
-
 ### Button
 | Members          | Type   | Purpose                     |
 |------------------|--------|-----------------------------|
