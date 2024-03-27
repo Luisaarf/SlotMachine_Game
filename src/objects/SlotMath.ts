@@ -6,7 +6,7 @@ export interface Fruit {
 
 export default class SlotMath {
     fruitsData: Fruit[];
-    selectedFruits: String[] = [];
+    selectedFruits: string[] = [];
     chosenFruit: Fruit;
 
     constructor() {
@@ -22,7 +22,7 @@ export default class SlotMath {
         ];
     }
 
-    setSelectFruits(fruit: String) {
+    setSelectFruits(fruit: string) {
         this.selectedFruits.push(fruit);
     }
     
@@ -43,5 +43,10 @@ export default class SlotMath {
                 return this.fruitsData[i];
             }
         }
+    }
+
+    getPayment(fruit: string) {
+        const payment = this.fruitsData.find(f => f.fruit === fruit).payment;
+        return payment;
     }
 }

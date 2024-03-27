@@ -5,13 +5,14 @@ export default class Reel extends Phaser.GameObjects.Container {
     chosenFruit : string;
     reelNumber: number;
     arrayFruitsNames: string[];
+    checkWinCallback: Function;
 
-
-    constructor(scene: Phaser.Scene, x: number, y: number, reelNumber: number, arrayFruitsNames:string[]) {
+    constructor(scene: Phaser.Scene, x: number, y: number, reelNumber: number, arrayFruitsNames:string[], checkWinCallback: Function) {
         super(scene, x, y);
         this.reelGroup = this.scene.add.group(); 
         this.reelNumber = reelNumber;
         this.arrayFruitsNames = arrayFruitsNames;
+        this.checkWinCallback = checkWinCallback;
     }
 
     setChosenFruit(fruit: string){
@@ -32,8 +33,7 @@ export default class Reel extends Phaser.GameObjects.Container {
     }
 
 
-    buildTweens(){
-        console.log(this.chosenFruit)
+    buildTweens(arrayFruits : string[]){
         const randomNumInRange: number = Math.random() * 3;
         let numRound =Math.floor(this.reelNumber * 2 + randomNumInRange);
         for (let i = 0; i < 8; i++)
@@ -58,19 +58,28 @@ export default class Reel extends Phaser.GameObjects.Container {
                     }
                 },
                 onComplete: () => {
+                    if(this.reelNumber === 3 && i=== 7){
+
+                        this.checkCondition(arrayFruits);
+                    }
                 }
             });
             ball.y = this.y - 840 + (140 * i);
         }
-        
     }
 
-    startSpin() {  
+   checkCondition = (arrayFruits : string[]) => {
+        if (this.reelNumber === 3 ) {
+            this.checkWinCallback(arrayFruits);
+        }
+    };
+    
+
+    startSpin(arrayFruits : string[]) {  
         if(this.reelGroup.children.entries.length > 0 ){
-                this.buildTweens();
+                this.buildTweens(arrayFruits);
         }else{
             console.error("Os rolos não foram inicializados corretamente.");
         }
-        return this.chosenFruit;
     } 
 }

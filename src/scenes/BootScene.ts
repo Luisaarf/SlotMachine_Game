@@ -15,6 +15,7 @@ import winLine from '@assets/ui/winline.png';
 import button from '@assets/ui/button/play_button_0.png';
 import buttonSelected from '@assets/ui/button/play_button_1.png';
 import buttonDisabled from '@assets/ui/button/play_button_3.png';
+
 export class BootScene extends Phaser.Scene {
   constructor() {
     super({ key: 'BootScene' });
@@ -43,4 +44,9 @@ export class BootScene extends Phaser.Scene {
   update(): void {
     this.scene.start('GameScene');
   }
+
+  create(): void {
+  }
+
+
 }
