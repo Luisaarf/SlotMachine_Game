@@ -16,12 +16,12 @@ npm run dev
 
 ## Classes
 <!--ts-->
-  * [GameScene](###GameScene)
-  * [Reel](###Reel)
-  * [Button](###Button)
-  * [SlotMath](###SloTMath)
-  * [Balance](###Balance)
-  * [WinLine](###WinLine)
+  * [GameScene](###gamescene)
+  * [Reel](###reel)
+  * [Button](###button)
+  * [SlotMath](###slotmath)
+  * [Balance](###balance)
+  * [WinLine](###winline)
 <!--te-->
 
 ## Entity Relationship Diagram
