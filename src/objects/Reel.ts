@@ -60,19 +60,13 @@ export default class Reel extends Phaser.GameObjects.Container {
                 onComplete: () => {
                     if(this.reelNumber === 3 && i=== 7){
 
-                        this.checkCondition(arrayFruits);
+                        this.checkWinCallback(arrayFruits);
                     }
                 }
             });
             ball.y = this.y - 840 + (140 * i);
         }
     }
-
-   checkCondition = (arrayFruits : string[]) => {
-        if (this.reelNumber === 3 ) {
-            this.checkWinCallback(arrayFruits);
-        }
-    };
     
 
     startSpin(arrayFruits : string[]) {  
