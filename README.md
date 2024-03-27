@@ -73,4 +73,20 @@ checkCondition method ------- deleted
 | getPayment             | method        | Retrieve the payment value of the fruit |
 
 ### Balance
+
+| Members    | Type   | Purpose                                |
+|------------|--------|----------------------------------------|
+| value      | number | Stores balance value                   |
+| text       | Text   | Text on display                        |
+| addToValue | method | Add a value to the variable value      |
+| getValue   | method | Retrieve value variable                |
+| updateText | method | Used to update text when value changes |
+
 ### WinLine
+
+| Members      | Type   | Purpose                                       |
+|--------------|--------|-----------------------------------------------|
+| winLine      | Image  | Line image on display                         |
+| blue         | number | Blue color's hex                              |
+| gray         | number | Gray color's hex                              |
+| FlashWinLine | method | Make winLine image flash changing light color |
