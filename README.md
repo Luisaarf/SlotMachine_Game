@@ -15,18 +15,19 @@ npm run dev
 ![Image of Game](https://github.com/Luisaarf/SlotMachine_Game/blob/main/assets/screengame.png)
 
 ## Classes
-
-* [GameScene](###GameScene)
-* [Reel](###Reel)
-* [Button](###Button)
-* [SlotMath](###SloTMath)
-* [Balance](###Balance)
-* [WinLine](###WinLine)
+<!--ts-->
+  * [GameScene](###GameScene)
+  * [Reel](###Reel)
+  * [Button](###Button)
+  * [SlotMath](###SloTMath)
+  * [Balance](###Balance)
+  * [WinLine](###WinLine)
+<!--te-->
 
 ## Entity Relationship Diagram
 ![ER Diagram](https://github.com/Luisaarf/SlotMachine_Game/blob/main/assets/diagram.png)
 
-
+### GameScene
 ### Reel
 
 ### Button
