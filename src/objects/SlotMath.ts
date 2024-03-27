@@ -6,6 +6,8 @@ export interface Fruit {
 
 export default class SlotMath {
     fruitsData: Fruit[];
+    selectedFruits: string[] = [];
+    chosenFruit: Fruit;
 
     constructor() {
         this.fruitsData = [
@@ -20,6 +22,10 @@ export default class SlotMath {
         ];
     }
 
+    setSelectFruits(fruit: string) {
+        this.selectedFruits.push(fruit);
+    }
+
     getFruitsNamesArray() {
         const fruits : string[] = this.fruitsData.map(fruit => fruit.fruit);
         return fruits;
@@ -32,6 +38,8 @@ export default class SlotMath {
         for (let i = 0; i < this.fruitsData.length; i++) {
             accumulatedWeight += this.fruitsData[i].weight;
             if (random < accumulatedWeight) {
+                this.chosenFruit = this.fruitsData[i];
+                this.setSelectFruits(this.chosenFruit.fruit);
                 return this.fruitsData[i];
             }
         }
