@@ -7,12 +7,12 @@ Simple Slot Machine Game using [phaser.io](https://phaser.io), Typescript and We
 ```
 npm install
 ```
-### development
+### development /// run game
 ```
 npm run dev
 ```
 ## Game Image
-![Image of Game](https://github.com/Luisaarf/SlotMachine_Game/blob/main/assets/screengame.png))
+![Image of Game](https://github.com/Luisaarf/SlotMachine_Game/blob/main/assets/screengame.png)
 
 ## Classes
 
@@ -55,8 +55,11 @@ npm run dev
 | buildTweens       | method         | It starts the animation, changing texture each loop and calling to check win when it finishes    |
 | startSpin         | method         | It calls the method to run animation                                                             |
 
+<<<<<<< HEAD
 checkCondition method ------- deleted
 
+=======
+>>>>>>> bb93409c339cd7a84bec6a83debd9a5ca7e7317b
 ### Button
 | Members          | Type   | Purpose                     |
 |------------------|--------|-----------------------------|
