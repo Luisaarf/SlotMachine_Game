@@ -39,7 +39,7 @@ export default class Reel extends Phaser.GameObjects.Container {
         for (let i = 0; i < 8; i++)
         {
             const ball = this.entries[i];
-            const nextTextureIndex = (i === 7) ? 0 : (i + 1);
+            let nextTextureIndex = (i === 7) ? 0 : (i + 1);
 
             this.scene.tweens.add({
                 targets: ball,
@@ -48,21 +48,15 @@ export default class Reel extends Phaser.GameObjects.Container {
                 // ease: 'Quad.easeInOut',
                 ease: 'cubic.inout',
                 loop: numRound,
-                countdown: numRound,
                 onLoop: (tween) => {
-                    ball.setTexture(this.arrayFruitsNames[nextTextureIndex]) 
-                    console.log(tween.loopCounter)
-                    if(tween.loopCounter === 0  && i === 1){
-                        ball.setTexture(this.chosenFruit)
+                    ball.setTexture(this.arrayFruitsNames[nextTextureIndex])  //nova textura
+                    if(tween.loopCounter === 0  && i === 1){ //se for o último loop e i for 1
+                        ball.setTexture(this.chosenFruit) //coloca a fruta escolhida 
+                    }else{
+                        nextTextureIndex = (nextTextureIndex === 7) ? 0 : (nextTextureIndex + 1);
+                        ball.setTexture(this.arrayFruitsNames[nextTextureIndex]);
                     }
                 },
-                // onRepeat: (tween) => { 
-                //     ball.setTexture(this.arrayFruitsNames[nextTextureIndex]) 
-                //     if(tween.completeAfterLoop && i === 1){
-                //         ball.setTexture(this.chosenFruit)
-                //     }
-                //     tween.completeDelay = 400;
-                // },
                 onComplete: () => {
                 }
             });
